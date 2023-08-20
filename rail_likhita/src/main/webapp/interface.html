@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>reservation</title>
+</head>
+<body>
+	<center>
+		<h1>Reservation</h1>
+	<label>from</label>
+	<select id="from">
+		<option>---</option>
+	</select>
+	<label>to</label>
+	<select id="to">
+		<option>---</option>
+	</select><br><br>
+	<button id="gett" onclick="get()">get</button></br><br><br>
+	<label>trains</label>
+	<select id="tlist">
+		<option>---</option>
+	</select>
+	<label>class</label>
+	<select id="clas">
+		<option>---</option>
+		<option>general</option>
+		<option>sleeper</option>
+		<option>ac</option>
+	</select>
+	<label>name</label>
+	<input type="text" id="name" required>
+	<label>age</label>
+	
+	<input type="text" id="age" required>
+	<label>gender</label>
+	<select id="gender" Required>
+		<option></option>
+		<option value="male">Male</option>
+		<option value="female">Female</option>
+		<option value="other">Other</option>
+	</select>
+
+</center>
+<script>
+	console.log("dsh");
+	function pre(){
+		var xhr= new XMLHttpRequest();
+		xhr.open("GET","Dup",true);
+		console.log("connect");
+		xhr.onreadystatechange=function(){
+			console.log("sadfh");
+			if(xhr.readyState===4 && xhr.status===200){
+				console.log(xhr.status);
+				var c=JSON.parse(xhr.responseText);
+				var ref1=document.getElementById("from");
+				var ref2=document.getElementById("to");
+				console.log(c);
+				for(var i=0;i<c.length;i++){
+					var op=document.createElement("option");
+					var op1=document.createElement("option");
+					op.textContent=c[i].st;
+					op1.textContent=c[i].st;
+					ref1.appendChild(op);
+					ref2.appendChild(op1);
+					
+				}
+			}
+			
+		}
+		xhr.send();
+	}
+	window.onload=pre;
+</script>
+</body>
+</html>
